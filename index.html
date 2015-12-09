@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="application">
+    <div class="holder">
+        <div id="aside" class="navigation">
+            <header>
+                <h2>Устройства</h2>
+            </header>
+            <main>
+                <ul>
+                    <li>Добавить устройство</li>
+                    <li class="active">Чайник</li>
+                    <li>Чайник дома</li>
+                    <li>Обогреватель</li>
+                    <li>Обогреватель на даче</li>
+                </ul>
+            </main>
+        </div>
+        <div id="main">
+            <header>
+                <h2>Чайник</h2>
+            </header>
+            <main>
+                <div class="sub-header">
+                    <div class="timer">10:00</div>
+                    <div class="properties">Параметры</div>
+                </div>
+                <div class="center-content">
+                    <div class="left-part">
+                        <div class="view-temperature">
+                            <div class="scale"></div>
+                        </div>
+                    </div>
+                    <div class="right-part">
+                        <button class="button on"></button>
+                        <div class="radio-button">
+                            <input type="radio" name="options" value="on" checked> On
+                            <input type="radio" name="options" value="off"> Off
+                        </div>
+                        <div id="current-temperature">65</div>
+                    </div>
+                    <div class="bottom-content">
+                        <div class="button-temperature">
+                            <label><input class="temperature" type="radio" name="selectTemperature" value="65" checked><br>65</label>
+                            <label><input class="temperature" type="radio" name="selectTemperature" value="75"><br>75</label>
+                            <label><input class="temperature" type="radio" name="selectTemperature" value="85"><br>85</label>
+                            <label><input class="temperature" type="radio" name="selectTemperature" value="100">100</label>
+                            <label><input class="temperature" type="radio" name="selectTemperature" value=""><br>+</label>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+</div>
+
+</body>
+<script data-main="js/app" src="js/lib/require.js"></script>
+</html>

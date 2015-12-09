@@ -1,0 +1,140 @@
+#application {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    top: 50%;
+    margin-top: -250px;
+}
+.holder {
+    width: 150%;
+    max-height: 400px;
+    height: 100%;
+    overflow-y: hidden;
+}
+#aside {
+    background: #ccc;
+    height: 400px;
+    float: left;
+    position: relative;
+}
+.navigation {
+    width: 200px;
+    transform: translate3d(0, 0, 0);
+}
+#main {
+    background: lightseagreen;
+    width: 300px;
+    height: 400px;
+    float: left;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+}
+header {
+    padding-bottom: 15px;
+    border-bottom: 2px solid #000;
+}
+h2 {
+   text-align: center;
+}
+ul {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+li {
+    list-style: none;
+    padding: 5px 0;
+    border-bottom: 1px solid #000000;
+}
+.active {
+    background: darkgrey;
+}
+.sub-header {
+    padding: 10px 0 5px;
+    overflow: hidden;
+}
+.timer {
+    float: left;
+    padding-left: 5px;
+}
+.properties {
+    float: right;
+    padding-right: 5px;
+}
+.view-temperature {
+    height: 100px;
+    width: 30px;
+    margin: 10px auto;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+.scale {
+    width: 30px;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    background: orangered;
+}
+.left-part {
+    width: 49%;
+    display: inline-block;
+}
+.right-part {
+    width: 49%;
+    display: inline-block;
+}
+.button {
+    text-align: center;
+    display: block;
+    background: transparent;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    margin: 20px auto;
+    outline: 1px solid #fff;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+.button:before {
+    content: 'Press';
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    color: #fff;
+}
+.on {
+    outline: 3px solid #fff;
+}
+.radio-button{
+    text-align: center;
+}
+.radio-button input {
+    display: inline-block;
+    cursor: pointer;
+}
+#current-temperature {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    padding-top: 20px;
+}
+.bottom-content {
+    padding-top: 30px;
+}
+.button-temperature label {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #fca;
+    width: 13%;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;vertical-align: bottom;
+}
+.button-temperature input {
+    cursor: pointer;
+}

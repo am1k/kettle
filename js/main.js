@@ -1,19 +1,30 @@
-define(function(require){
+define([
+    'backbone',
+    'jquery',
+    './views/MainView',
+    './eventAggregator'
 
-    var changeTemperature = require('./view/changeTemperature');
-    var boil = require('./kettle-functionality/kettle');
+], function(Backbone, $, MainView, eventAggregator){
 
-    function Kettle(){
-        this.init();
-    }
+    var MyRouter = Backbone.Router.extend({
 
-    Kettle.prototype = {
-        init: function(){
-            changeTemperature();
-            boil();
+        routes: {
+            '(:id)': 'home'
         },
-    };
 
-    return Kettle;
+        initialize: function(){
+            Backbone.history.start();
+        },
 
+        home: function(id){
+            if(!this.currentView){
+                this.currentView = new MainView({currentId: id});
+                $('#application').append(this.currentView.$el);
+            }else{
+                eventAggregator.trigger('currentId', id);
+            }
+        }
+    });
+
+    return MyRouter;
 });

@@ -21,6 +21,7 @@ define([
                 this.currentView = new MainView({currentId: id});
                 $('#application').append(this.currentView.$el);
             }else{
+                console.log(id);
                 eventAggregator.trigger('currentId', id);
             }
         }

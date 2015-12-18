@@ -29,18 +29,25 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
 
             if(!id){
                 model = this.at(0);
-            }else{
+            } else{
                 model = this.findWhere({id: id})
             }
 
-            console.log(id, model);
             api.emit('changeKettle', id);
+
+            api.once('changeKettle', function(data){
+                console.log(data);
+               model.set(JSON.parse(data));
+            });
 
             this.trigger('setActive', model);
 
+            console.log();
+            model.set('active', true);
+
             this.currentModel = model;
 
-        }
+        },
 
     });
 

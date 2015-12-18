@@ -29,6 +29,7 @@ define([
             });
             this.listenTo(this.collection, 'setActive', function(model){
                 !kettleView && (kettleView = new KettleView());
+                console.log(model);
                 kettleView.applyModel(model);
             });
             return this;

@@ -13,6 +13,12 @@ define([
             },
             '#current-temperature': {
                 observe: 'degree'
+            },
+            '#start': {
+                attributes: [{
+                    name: 'disabled',
+                    observe: 'powerOn'
+                }]
             }
         },
 
@@ -28,17 +34,9 @@ define([
         },
 
         applyModel: function(model){
-            console.log(model);
             this.model && this.unstickit(this.model, this.bindings);
             this.model = model;
             this.waterLevel();
-            //this.listenTo(this.model, 'change', function(){
-            //    if(this.model.get('powerOn') == true) {
-            //        $('.temperature').attr('disabled', 'disabled')
-            //    } else {
-            //        $('.temperature').removeAttr('disabled')
-            //    }
-            //});
             this.stickit(this.model, this.bindings);
         },
 

@@ -6,17 +6,16 @@ define([
 
     var MainView = Backbone.View.extend({
 
-        tagName: 'div',
+        tagName: 'li',
 
         className: 'list-kettles',
 
         bindings: {
-            '.class': {
+            ':el': {
                 attributes: [{
                     name: 'class',
                     observe: 'active',
                     onGet: function (val) {
-                        console.log(val);
                         return val ? 'active' : ''
                     }
                 }]
@@ -27,14 +26,10 @@ define([
 
         initialize: function(){
             this.render();
-            this.listenTo(this.model, 'change', function(){
-                console.log(this.model)
-            });
             return this;
         },
 
         render: function(){
-            console.log(this.model);
             this.$el.html(this.template(this.model.toJSON() ));
             this.stickit(this.model, this.bindings);
             return this;

@@ -1,11 +1,13 @@
 define([
     'backbone',
     'text!../templates/mainTemplate.html',
+    'text!../templates/modal-add.html',
+    'text!../templates/modal-buy.html',
     '../models/model',
     './listView',
     './kettleView',
     '../collections/mainCollection'
-], function(Backbone, mainTemplate, MainModel, ListView, KettleView, MainCollection){
+], function(Backbone, mainTemplate, modalAdd, modalBuy, MainModel, ListView, KettleView, MainCollection){
 
     var MainView = Backbone.View.extend({
 
@@ -14,6 +16,12 @@ define([
         collection: new MainCollection,
 
         template: _.template(mainTemplate),
+
+        events: {
+            'click .add' : 'addName',
+            'click .properties': 'buyKey',
+            'click #close': 'submit'
+        },
 
         initialize: function(opts){
             var kettleView;
@@ -29,10 +37,25 @@ define([
             });
             this.listenTo(this.collection, 'setActive', function(model){
                 !kettleView && (kettleView = new KettleView());
-                console.log(model);
                 kettleView.applyModel(model);
             });
             return this;
+        },
+
+        addName: function(e){
+            e.preventDefault();
+            this.$el.find('#popup').append(modalAdd);
+        },
+
+        buyKey: function(e){
+            e.preventDefault();
+            this.$el.find('#popup').append(modalBuy);
+        },
+
+        submit: function(){
+
+            console.log(222);
+            this.$el.find('.wrapper-modal').remove();
         }
 
     });

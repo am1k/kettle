@@ -15,7 +15,7 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
             });
         },
         fill: function(id){
-            api.emit('getKettles');
+            api.emit('getKettles', localStorage.getItem('kettle-token'));
             api.once('getKettles', function(data){
                 this.reset(JSON.parse(data));
             }.bind(this));
@@ -42,12 +42,15 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
 
             this.trigger('setActive', model);
 
-            console.log();
             model.set('active', true);
+
+            if(this.currentModel !== undefined) {
+                this.currentModel.set('active', false);
+            }
 
             this.currentModel = model;
 
-        },
+        }
 
     });
 

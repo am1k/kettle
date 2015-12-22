@@ -55,8 +55,13 @@ h2 {
     padding-left: 5px;
 }
 .properties {
+    border: 1px solid #ccc;
+    padding: 7px;
+    text-align: center;
+    color: #fff;
     float: right;
-    padding-right: 5px;
+    margin-right: 5px;
+    cursor: pointer;
 }
 .view-temperature {
     height: 100px;
@@ -136,5 +141,52 @@ h2 {
     cursor: pointer;vertical-align: bottom;
 }
 .button-temperature input {
+    cursor: pointer;
+}
+
+.add {
+    text-align: center;
+    margin: 0 auto 10px;
+    width: 85px;
+    height: 30px;
+    display: block;
+    border-bottom: 1px solid #000;
+    cursor: pointer;
+}
+.wrapper-fade{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+}
+.fade {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
+    background: #000;
+}
+.wrapper-add {
+    opacity: 1;
+    width: 300px;
+    height: 100px;
+    margin: 100px auto;
+    text-align: center;
+    background: #ccc;
+}
+.enter-name, .keys {
+    padding: 5px;
+    margin: 5px 0 20px;
+}
+#close {
+    width: 75px;
+    margin: 0 auto;
+    background: #ffccaa;
+    font-weight: bold;
+    padding: 7px;
     cursor: pointer;
 }

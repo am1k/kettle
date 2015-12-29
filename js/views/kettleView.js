@@ -5,7 +5,7 @@ define([
 
     var MainView = Backbone.View.extend({
 
-        el: '#main',
+        el: '.main',
 
         bindings: {
             '.button-temperature input': {
@@ -50,9 +50,10 @@ define([
         },
 
         waterLevel: function(){
-            $('#scale').css('height', this.model.get('waterLevel') + 'px');
+            if(this.model !== undefined){
+                $('#scale').css('height', this.model.get('waterLevel') + 'px');
+            }
         }
-
     });
 
     return MainView;

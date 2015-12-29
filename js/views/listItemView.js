@@ -1,7 +1,6 @@
 define([
     'backbone',
-    'text!../templates/list-kettles.html',
-    '../collections/mainCollection'
+    'text!../templates/list-kettles.html'
 ], function(Backbone, mainTemplate){
 
     var MainView = Backbone.View.extend({
@@ -30,11 +29,9 @@ define([
         },
 
         render: function(){
-            this.$el.html(this.template(this.model.toJSON() ));
+            this.$el.html(this.template( this.model.toJSON() ));
             this.stickit(this.model, this.bindings);
-            return this;
         }
-
     });
 
     return MainView;

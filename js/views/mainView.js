@@ -1,61 +1,63 @@
 define([
     'backbone',
     'text!../templates/mainTemplate.html',
-    'text!../templates/modal-add.html',
-    'text!../templates/modal-buy.html',
-    '../models/model',
-    './listView',
+    './listItemView',
     './kettleView',
+    '../models/userModel',
+    './buyView',
+    './addButton',
     '../collections/mainCollection'
-], function(Backbone, mainTemplate, modalAdd, modalBuy, MainModel, ListView, KettleView, MainCollection){
+], function(Backbone, mainTemplate, ListView, KettleView,UserModel, BuyView, AddButton, MainCollection){
 
     var MainView = Backbone.View.extend({
 
-        model: new MainModel,
+        model: new UserModel,
 
         collection: new MainCollection,
 
         template: _.template(mainTemplate),
 
-        events: {
-            'click .add' : 'addName',
-            'click .properties': 'buyKey',
-            'click #close': 'submit'
-        },
-
         initialize: function(opts){
             var kettleView;
-            var self = this;
             this.$el.html(this.template());
-            var docFrag = document.createDocumentFragment();
-            this.collection.fill(opts.currentId);
-            this.collection.on('reset', function(){
-                self.collection.forEach(function(model){
-                    docFrag.appendChild((new ListView({model: model})).$el[0])
-                });
-                self.$el.find('#aside').append(docFrag);
+            this.$el.appendTo('#application');
+            this.listenToOnce(this.model, 'change:_id', function(){
+                this.collection.fill(opts.currentId);
+            });
+            this.listenTo(this.collection, 'add', this.addOne);
+            this.listenTo(this.collection, 'reset', function(){
+                console.log(555)
+                this.collection.each(this.addOne);
+                if(this.model.get('free')){
+                    this.renderBuyButton();
+                }
+                if(this.model.get('free') && this.model.get('kettles') <= 3 || !this.model.get('free') ){
+                    this.renderAddButton();
+                }
             });
             this.listenTo(this.collection, 'setActive', function(model){
                 !kettleView && (kettleView = new KettleView());
                 kettleView.applyModel(model);
             });
+
             return this;
         },
 
-        addName: function(e){
-            e.preventDefault();
-            this.$el.find('#popup').append(modalAdd);
+        addOne: function(model){
+            var view = new ListView({model: model});
+            view.$el.appendTo('#aside');
         },
 
-        buyKey: function(e){
-            e.preventDefault();
-            this.$el.find('#popup').append(modalBuy);
+        renderBuyButton: function(){
+            var view = new BuyView();
+            view.$el.appendTo('.sub-header');
         },
 
-        submit: function(){
-
-            console.log(222);
-            this.$el.find('.wrapper-modal').remove();
+        renderAddButton: function(){
+            var view = new AddButton({
+                model: this.model
+            });
+            view.$el.appendTo('.navigation');
         }
 
     });

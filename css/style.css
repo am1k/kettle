@@ -1,17 +1,64 @@
-#application {
-    max-width: 500px;
-    max-height: 400px;
-    position: absolute;
-    left: 50%;
-    margin-left: -200px;
-    top: 50%;
-    margin-top: -250px;
+/*#application {*/
+    /*max-width: 500px;*/
+    /*max-height: 400px;*/
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*margin-left: -200px;*/
+    /*top: 50%;*/
+    /*margin-top: -250px;*/
+/*}*/
+/*.holder {*/
+    /*width: 150%;*/
+    /*max-height: 400px;*/
+    /*height: 100%;*/
+    /*overflow-y: hidden;*/
+/*}*/
+
+.application-view {
+    width: 100px;
+    height: 100px;
+    margin: 150px auto;
 }
-.holder {
-    width: 150%;
-    max-height: 400px;
-    height: 100%;
-    overflow-y: hidden;
+.application-view  a {
+    text-decoration: none;
+    color: #000000;
+    background: #ccc;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    width: 100px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.login-form {
+    width: 300px;
+    margin: 150px auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+#login-form ul, .registration-form ul {
+    padding-left: 5px;
+}
+#login-form ul li, .registration-form ul li {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+#login-form ul li input, .registration-form ul li input {
+    float: right;
+}
+.center {
+    text-align: center;
+}
+.registration-form ul .radio input {
+    float: none;
+}
+.registration-form {
+    width: 325px;
+    margin: 150px auto;
+    border: 1px solid #ccc;
+    padding: 10px;
 }
 #aside {
     background: #ccc;
@@ -199,3 +246,6 @@ h2 {
     padding: 7px;
     cursor: pointer;
 }
+
+
+

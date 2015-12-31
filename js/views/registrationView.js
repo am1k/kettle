@@ -31,6 +31,10 @@ define([
                 events: ['keyup'],
                 observe: 'key'
             },
+            '#confirmPassword': {
+                events: ['keyup'],
+                observe: 'confirmPassword'
+            },
             ':radio': {
                 events: ['change'],
                 observe: 'mode'
@@ -54,11 +58,10 @@ define([
             '#registration-button': {
                 attributes: [{
                     name: 'disabled',
-                    observe: ['login','password', 'mode', 'key', 'company'],
+                    observe: ['login','password', 'mode', 'key', 'company', 'confirmPassword'],
                     onGet: function(values){
                         console.log(values);
-                        var userCheck = !values[0].length || values[1].length < 5;
-                        console.log(userCheck, !values[3].length, !values[4].length)
+                        var userCheck = !values[0].length || values[1].length && (values[1] === values[5]) < 4;
                         if(values[2] === 'user'){
                             return userCheck || !values[3].length;
                         }
@@ -93,7 +96,13 @@ define([
 
         registration: function(){
             this.model.sentRegistrationData();
+        },
+
+        showKey: function(){
+
         }
+
+
 
 
     });

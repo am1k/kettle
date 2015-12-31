@@ -2,14 +2,14 @@ define(['backbone', '../api'], function(Backbone, api) {
 
     var User = Backbone.Model.extend({
            defaults: {
-               free: true,
                kettles: 0,
-               token: localStorage.getItem('kettleToken')
+               token: localStorage.getItem('userToken')
            },
            initialize: function(){
                api.on('user', function(data){
+                   console.log(111);
                    data = JSON.parse(data);
-                   localStorage.setItem('kettleToken', data.token);
+                   localStorage.setItem('userToken', data.token);
                    this.set(data);
                }.bind(this));
                api.on('user:change', function(data){
@@ -23,6 +23,11 @@ define(['backbone', '../api'], function(Backbone, api) {
                }.bind(this));
            }
        });
+
+/*    {
+        Code: -1,
+            Description: 'Wrong key'
+    }*/
 
     return User;
 });

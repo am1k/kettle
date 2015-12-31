@@ -11,10 +11,15 @@ define([
         },
 
         sendUser: function(){
-            api.emit('login',  JSON.stringify({
+            api.emit('login', JSON.stringify({
                 login: this.get('login'),
                 password: this.get('password')
             }));
+
+            api.once('login', function(data){
+                data = JSON.parse(data);
+                console.log(data);
+            })
         }
 
     });

@@ -36,7 +36,6 @@ define([
         applyModel: function(model){
             this.model && this.unstickit(this.model, this.bindings);
             this.model = model;
-            this.waterLevel();
             this.stickit(this.model, this.bindings);
         },
 
@@ -47,12 +46,6 @@ define([
 
         turnOn: function(){
             this.model.boil();
-        },
-
-        waterLevel: function(){
-            if(this.model !== undefined){
-                $('#scale').css('height', this.model.get('waterLevel') + 'px');
-            }
         }
     });
 

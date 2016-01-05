@@ -7,6 +7,11 @@ require.config({
         text: 'lib/text',
         stickit: 'lib/backbone.stickit',
         socketio: 'lib/socket.io-1.2.0'
+    },
+    shim: {
+        'jquery': {
+            exports: 'jQuery'
+        }
     }
 });
 

@@ -4,7 +4,6 @@ define(['backbone', '../api'], function(Backbone, api) {
     var ModelDevice = Backbone.Model.extend({
 
         defaults: {
-
         },
 
         sendName: function(){

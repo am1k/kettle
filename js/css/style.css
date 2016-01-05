@@ -1,63 +1,45 @@
-/*#application {*/
-    /*max-width: 500px;*/
-    /*max-height: 400px;*/
-    /*position: absolute;*/
-    /*left: 50%;*/
-    /*margin-left: -200px;*/
-    /*top: 50%;*/
-    /*margin-top: -250px;*/
-/*}*/
-/*.holder {*/
-    /*width: 150%;*/
-    /*max-height: 400px;*/
-    /*height: 100%;*/
-    /*overflow-y: hidden;*/
-/*}*/
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #c1bdba;
+}
 
 .application-view {
-    width: 100px;
-    height: 100px;
-    margin: 150px auto;
+    width: 150px;
+    margin: 140px auto;
 }
 .application-view  a {
-    text-decoration: none;
-    color: #000000;
-    background: #ccc;
+    background: #03a9f4;
+    color: #fff;
     display: block;
-    border: 1px solid #ccc;
-    padding: 5px;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 20px;
+    float: left;
+    width: 150px;
     text-align: center;
-    width: 100px;
-    margin-bottom: 10px;
     cursor: pointer;
-}
-.login-form {
-    width: 300px;
-    margin: 150px auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-#login-form ul, .registration-form ul {
-    padding-left: 5px;
-}
-#login-form ul li, .registration-form ul li {
-    list-style: none;
-    padding-left: 0;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
     margin-bottom: 10px;
 }
-#login-form ul li input, .registration-form ul li input {
-    float: right;
+.application-view  a:hover {
+    background: #0381f4;
+    color: #ffffff;
+}
+.login-form, .registration-form {
+    width: 300px;
+    margin: 130px auto;
+    padding: 10px;
+    background: rgba(19, 35, 47, 0.9);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 .center {
     text-align: center;
 }
-.registration-form ul .radio input {
-    float: none;
-}
 .registration-form {
     width: 325px;
-    margin: 150px auto;
-    border: 1px solid #ccc;
+    margin: 60px auto;
     padding: 10px;
 }
 #aside {
@@ -72,7 +54,7 @@
 }
 #main {
     background: lightseagreen;
-    width: 300px;
+    width: 550px;
     height: 400px;
     float: left;
     position: relative;
@@ -179,19 +161,23 @@ h2 {
 .bottom-content {
     padding-top: 30px;
 }
-.button-temperature label {
-    display: inline-block;
-    text-align: center;
-    border: 1px solid #fca;
-    width: 13%;
-    height: 40px;
-    margin-left: 10px;
-    cursor: pointer;vertical-align: bottom;
-}
-.button-temperature input {
-    cursor: pointer;
+.temperature:checked + label {
+    background: palevioletred;
 }
 
+.button-temperature label {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    outline: 1px solid #fff;
+    border: none;
+    position: relative;
+}
 .add-btn {
     text-align: center;
     margin: 0 auto 10px;
@@ -247,5 +233,105 @@ h2 {
     cursor: pointer;
 }
 
+.field-wrap {
+    position: relative;
+    margin-bottom: 10px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    position: absolute;
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px);
+    left: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    -webkit-backface-visibility: hidden;
+    font-size: 14px;
+}
+label .req {
+    margin: 2px;
+    color: #03a9f4;
+}
+input:focus, textarea:focus {
+    outline: 0;
+    border-color: #03a9f4;
+}
+input {
+    font-size: 14px;
+    display: block;
+    width: 92%;
+    height: 100%;
+    padding: 5px 10px;
+    background: none;
+    background-image: none;
+    border: 1px solid #a0b3b0;
+    color: #ffffff;
+    border-radius: 0;
+    -webkit-transition: border-color .25s ease, box-shadow .25s ease;
+    transition: border-color .25s ease, box-shadow .25s ease;
+}
 
+#login-button:disabled, #registration-button:disabled {
+    cursor: default;
+    background: #ccc;
+    color: #fff;
+}
+#login-button, #registration-button, .add-btn{
+    background: #03a9f4;
+    color: #fff;
+    display: block;
+    border: none;
+    text-decoration: none;
+    padding: 7px;
+    font-size: 14px;
+    width: 100px;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: .5s ease;
+    transition: .5s ease;
+}
+#login-button:hover, #registration-button:hover, .add-btn:hover {
+    background: #0381f4;
+    color: #ffffff;
+}
+.text {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 15px;
+}
+.radio-buttons {
+    height: 30px;
+    margin-bottom: 15px !important;
+}
+.radio {
+    position: relative !important;
+    width: 45%;
+    display: inline-block;
+    margin: 0;
+}
+input[type="radio"] {
+    height: auto !important;
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+}
 
+#key a {
+    text-align: center;
+    color: #fff;
+}
+.kettles {
+    margin-bottom: 10px;
+}
+.kettles li {
+    list-style: none;
+}
+.temperature {
+    visibility: hidden;
+}

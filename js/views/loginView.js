@@ -1,9 +1,10 @@
 define([
     'backbone',
     'text!../templates/login-page.html',
-    '../models/loginModel'
+    '../models/userModel',
+    '../eventAggregator'
 
-], function(Backbone, mainTemplate, LoginModel){
+], function(Backbone, mainTemplate, userModel, eventAggregator){
 
     Backbone.View.prototype.close = function(){
         this.unstickit(this.model, this.bindings);
@@ -26,10 +27,23 @@ define([
                     name: 'disabled',
                     observe: ['login','password'],
                     onGet: function(values){
-                        console.log(values);
                         return !values[0].length && values[1].length < 5;
                     }
                 }]
+            },
+            '.message': {
+                attributes: [{
+                    observe: 'Description',
+                    updateModel: false,
+                    name: 'class',
+                    onGet: function(val){
+                        return val ? 'show': '';
+                    }
+                }]
+            },
+            '.text': {
+                updateModel: false,
+                observe: 'Description'
             }
         },
 
@@ -37,7 +51,7 @@ define([
             'click #login-button': 'login'
         },
 
-        model: new LoginModel,
+        model:  userModel,
 
         className: 'login-form',
 
@@ -53,8 +67,10 @@ define([
             this.$el.html(this.template());
         },
 
-        login: function(e){
-            this.model.sendUser();
+        login: function(){
+            this.model.userLogin().then(function(){
+                    eventAggregator.trigger('redirect')
+            });
         }
 
     });

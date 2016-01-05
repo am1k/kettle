@@ -1,15 +1,14 @@
 <form id="login-form">
-    <ul>
-        <li>
-            <label for="name">Name</label>
-            <input type="text" id="name" required>
-        </li>
-        <li>
-            <label for="password">Password</label>
-            <input type="password" id="password" required>
-        </li>
-        <li>
-            <button id="login-button">Login</button>
-        </li>
-    </ul>
+    <div class="field-wrap">
+        <label for="login"></label>
+        <input type="text" id="login" placeholder="Login*" required>
+    </div>
+    <div class="field-wrap">
+        <label for="password"></label>
+        <input type="password" id="password" placeholder="Password*" required>
+    </div>
+    <button class="button button-block" id="login-button">Log In</button>
+    <div class="message">
+        <div class="text"></div>
+    </div>
 </form>

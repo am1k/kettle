@@ -43,8 +43,6 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
                     return;
                 }
             }
-
-
             api.emit('changeKettle', model.get('_id'));
 
             api.once('changeKettle', function(data){

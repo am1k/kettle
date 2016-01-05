@@ -9,7 +9,10 @@ define([
 
         bindings: {
             '.button-temperature input': {
-                observe: 'targetDegree'
+                observe: 'targetDegree',
+                onGet: function(val){
+                    console.log(val);
+                }
             },
             '#current-temperature': {
                 observe: 'degree'
@@ -18,6 +21,15 @@ define([
                 attributes: [{
                     name: 'disabled',
                     observe: 'powerOn'
+                }]
+            },
+            '#scale': {
+                attributes: [{
+                    name: 'style',
+                    observe: 'waterLevel',
+                    onGet: function(val){
+                        return 'height:' +  val + '%';
+                    }
                 }]
             }
         },
@@ -29,6 +41,7 @@ define([
         template: _.template(mainTemplate),
 
         initialize: function(){
+            console.log(this.model);
             this.render();
             return this;
         },

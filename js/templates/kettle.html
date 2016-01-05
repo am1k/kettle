@@ -4,9 +4,6 @@
 <main>
     <div class="center-content">
         <!-- необходимо вынести в отдельный шаблон для рендера -->
-        <div class="sub-header">
-            <div class="timer">10:00</div>
-        </div>
         <div class="left-part">
             <div class="view-temperature">
                 <div id="scale"></div>
@@ -14,18 +11,18 @@
         </div>
         <div class="right-part">
             <button id="start"></button>
-            <div class="radio-button">
-                <input type="radio" name="options" value="on" checked> On
-                <input type="radio" name="options" value="off"> Off
-            </div>
             <div id="current-temperature"></div>
         </div>
         <div class="bottom-content">
             <div class="button-temperature">
-                <label><input class="temperature" type="radio" name="selectTemperature" value="65"><br>65</label>
-                <label><input class="temperature" type="radio" name="selectTemperature" value="75"><br>75</label>
-                <label><input class="temperature" type="radio" name="selectTemperature" value="85"><br>85</label>
-                <label><input class="temperature" type="radio" name="selectTemperature" value="100">100</label>
+                <input class="temperature" id="lab1" type="radio" name="selectTemperature" value="65">
+                <label for="lab1">65</label>
+                <input class="temperature" id="lab2" type="radio" name="selectTemperature" value="75">
+                <label for="lab2">75</label>
+                <input class="temperature" id="lab3" type="radio" name="selectTemperature" value="85">
+                <label for="lab3">85</label>
+                <input class="temperature" id="lab4" type="radio" name="selectTemperature" value="100">
+                <label for="lab4">100</label>
             </div>
         </div>
     </div>

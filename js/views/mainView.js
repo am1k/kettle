@@ -7,27 +7,28 @@ define([
     './buyView',
     './addButton',
     '../collections/mainCollection'
-], function(Backbone, mainTemplate, ListView, KettleView,UserModel, BuyView, AddButton, MainCollection){
+], function(Backbone, mainTemplate, ListView, KettleView,userModel, BuyView, AddButton, MainCollection){
 
     var MainView = Backbone.View.extend({
 
-        model: new UserModel,
+        model: userModel,
 
         collection: new MainCollection,
 
         template: _.template(mainTemplate),
 
         initialize: function(opts){
+            console.log(opts.currentId);
             var kettleView;
             this.$el.html(this.template());
             this.$el.appendTo('#application');
-            this.listenToOnce(this.model, 'change:_id', function(){
+            this.model.login().then(function(){
                 this.collection.fill(opts.currentId);
-            });
+            }.bind(this));
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'reset', function(){
-                console.log(555)
                 this.collection.each(this.addOne);
+                console.log(this.model);
                 if(this.model.get('free')){
                     this.renderBuyButton();
                 }
@@ -45,7 +46,7 @@ define([
 
         addOne: function(model){
             var view = new ListView({model: model});
-            view.$el.appendTo('#aside');
+            view.$el.appendTo('.kettles');
         },
 
         renderBuyButton: function(){

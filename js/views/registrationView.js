@@ -1,16 +1,13 @@
 define([
     'backbone',
     'text!../templates/registration-template.html',
-    '../models/registrationModel'
+    '../models/userModel'
 
-],function(Backbone, mainTemplate, RegistrationModel){
-
-    Backbone.View.prototype.close = function(){
-        this.unstickit(this.model, this.bindings);
-        this.remove();
-    };
+],function(Backbone, mainTemplate, userModel){
 
     var RegistrationView = Backbone.View.extend({
+
+        model: userModel,
 
         className: 'registration-form',
 
@@ -60,16 +57,32 @@ define([
                     name: 'disabled',
                     observe: ['login','password', 'mode', 'key', 'company', 'confirmPassword'],
                     onGet: function(values){
-                        console.log(values);
-                        var userCheck = !values[0].length || values[1].length && (values[1] === values[5]) < 4;
+                        //console.log(values);
+                        var userCheck = values[0].length < 4 || values[1].length < 4 && (values[1] === values[5]) ;
                         if(values[2] === 'user'){
                             return userCheck || !values[3].length;
                         }
                         if(values[2] === 'company'){
                             return userCheck || !values[4].length;
                         }
+                        return true;
                     }
                 }]
+            },
+
+            '#key': {
+                attributes: [{
+                    observe: 'Description',
+                    updateModel: false,
+                    name: 'class',
+                    onGet: function(val){
+                        return val ? 'show': '';
+                    }
+                }]
+            },
+            '.text': {
+                updateModel: false,
+                observe: 'Description'
             }
         },
 
@@ -77,8 +90,6 @@ define([
 
             'click #registration-button': 'registration'
         },
-
-        model: new RegistrationModel,
 
         template: _.template(mainTemplate),
 
@@ -95,15 +106,8 @@ define([
         },
 
         registration: function(){
-            this.model.sentRegistrationData();
-        },
-
-        showKey: function(){
-
+            this.model.signIn();
         }
-
-
-
 
     });
     return RegistrationView;

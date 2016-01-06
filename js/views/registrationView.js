@@ -72,17 +72,18 @@ define([
 
             '#key': {
                 attributes: [{
-                    observe: 'Description',
+                    observe: 'DescriptionRegistration',
                     updateModel: false,
                     name: 'class',
                     onGet: function(val){
+                        console.log(val);
                         return val ? 'show': '';
                     }
                 }]
             },
             '.text': {
                 updateModel: false,
-                observe: 'Description'
+                observe: 'DescriptionRegistration'
             }
         },
 

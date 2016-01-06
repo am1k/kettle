@@ -14,7 +14,7 @@ define([
     var LoginPage = Backbone.View.extend({
 
         bindings: {
-            '#name': {
+            '#login': {
                 events: ['keyup'],
                 observe: 'login'
             },
@@ -69,7 +69,8 @@ define([
 
         login: function(){
             this.model.userLogin().then(function(){
-                    eventAggregator.trigger('redirect')
+                console.log(this.model);
+                eventAggregator.trigger('redirect')
             });
         }
 

@@ -13,11 +13,13 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
                key: '',
                company: '',
                Description: '',
+               DescriptionRegistration: '',
                Code: ''
            },
 
         initialize: function(){
             this.on('change:token', function(model, val){
+                console.log(val);
                 val && localStorage.setItem('userToken', val);
             });
         },
@@ -32,16 +34,18 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
             if(!busy){
                 loginDefer = $.Deferred();
                 busy = true;
-                if(this.get('token')){
-                    loginData = {
-                        token: this.get('token')
-                    };
-                }else{
+                if(this.get('login')){
                     loginData = {
                         login: this.get('login'),
                         password: this.get('password')
                     }
                 }
+                else if(this.get('token')){
+                    loginData = {
+                        token: this.get('token')
+                    };
+                }
+
                 api.emit('login', JSON.stringify(loginData));
 
                 api.once('login', function(data){
@@ -68,7 +72,7 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
             //busy = false;
             api.on('user', function(data){
                 data = JSON.parse(data);
-                console.log(data);
+                console.log(data, 555);
                 localStorage.setItem('userToken', data.token);
                 this.set(data);
             }.bind(this));
@@ -95,7 +99,7 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
 
             api.once('registration', function(data){
                 data = JSON.parse(data);
-                self.set('Description', data.Description);
+                self.set('DescriptionRegistration', data.DescriptionRegistration);
                 self.login();
             });
         }

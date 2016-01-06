@@ -29,10 +29,10 @@ define([
             this.listenTo(this.collection, 'reset', function(){
                 this.collection.each(this.addOne);
                 console.log(this.model);
-                if(this.model.get('free')){
+                if(this.model.get('free') && (this.model.get('admin') == true)){
                     this.renderBuyButton();
                 }
-                if(this.model.get('free') && this.model.get('kettles') <= 3 || !this.model.get('free') ){
+                if((this.model.get('free') && (this.model.get('admin') == true)) && this.model.get('kettles') <= 3 || !this.model.get('free') ){
                     this.renderAddButton();
                 }
             });

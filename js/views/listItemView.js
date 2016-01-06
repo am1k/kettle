@@ -17,6 +17,13 @@ define([
                     onGet: function (val) {
                         return val ? 'active' : ''
                     }
+                }, {
+                    name: 'class',
+                    observe: 'boiled',
+                    onGet: function (val) {
+                        console.log(val);
+                        return val ? 'boil' : ''
+                    }
                 }]
             }
         },

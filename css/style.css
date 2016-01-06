@@ -54,7 +54,7 @@ body {
 }
 #main {
     background: lightseagreen;
-    width: 550px;
+    width: 535px;
     height: 400px;
     float: left;
     position: relative;
@@ -74,6 +74,9 @@ h2 {
 }
 .active {
     background: darkgrey;
+}
+.boil {
+    background: darkcyan;
 }
 .sub-header {
     padding: 10px 0 5px;
@@ -111,11 +114,11 @@ h2 {
     background: orangered;
 }
 .left-part {
-    width: 49%;
+    width: 60%;
     display: inline-block;
 }
 .right-part {
-    width: 49%;
+    width: 38%;
     display: inline-block;
 }
 #start {
@@ -215,9 +218,16 @@ h2 {
     opacity: 1;
     width: 300px;
     height: 100px;
+    padding-top: 10px;
     margin: 100px auto;
     text-align: center;
-    background: #ccc;
+    background: rgba(19, 35, 47, 0.9);
+    overflow: hidden;
+}
+.wrapper-add input {
+    width: 250px;
+    height: 28px;
+    margin: 0 auto 10px;
 }
 .enter-name, .keys {
     padding: 5px;
@@ -275,12 +285,12 @@ input {
     transition: border-color .25s ease, box-shadow .25s ease;
 }
 
-#login-button:disabled, #registration-button:disabled {
+#login-button:disabled, #registration-button:disabled, #close:disabled {
     cursor: default;
     background: #ccc;
     color: #fff;
 }
-#login-button, #registration-button, .add-btn{
+#login-button, #registration-button, .add-btn, #close{
     background: #03a9f4;
     color: #fff;
     display: block;
@@ -295,7 +305,7 @@ input {
     -webkit-transition: .5s ease;
     transition: .5s ease;
 }
-#login-button:hover, #registration-button:hover, .add-btn:hover {
+#login-button:hover, #registration-button:hover, .add-btn:hover, #close:hover {
     background: #0381f4;
     color: #ffffff;
 }
@@ -321,8 +331,21 @@ input[type="radio"] {
     display: inline-block;
     vertical-align: middle;
 }
-
+#key {
+    display: none;
+}
+#key.show {
+    display: block;
+}
 #key a {
+    text-align: center;
+    color: #fff;
+}
+.back {
+    margin-top: 10px;
+    text-align: center;
+}
+.back a {
     text-align: center;
     color: #fff;
 }

@@ -13,6 +13,19 @@ define(['backbone', '../api'], function(Backbone, api) {
                     isCold: this.get('powerOn')
                 }));
             }
+        },
+
+        removeKettle: function(){
+            api.emit('remove', JSON.stringify({
+                _id: this.get('_id'),
+                companyId: this.get('companyId')
+            }));
+
+            api.once('remove', function(code){
+                if(code > 0){
+                    this.destroy();
+                }
+            }.bind(this));
         }
     });
 

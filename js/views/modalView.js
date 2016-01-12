@@ -1,10 +1,9 @@
 define([
     'backbone',
-    '../models/model',
-    '../models/modelDevice',
+    'models/newDeviceModel',
     'text!../templates/modal-add.html'
 
-], function(Backbone, MainModel, ModelDevice, myTemplate){
+], function(Backbone, Model, myTemplate){
 
     var ModalView = Backbone.View.extend({
 
@@ -12,19 +11,17 @@ define([
 
         className: 'wrapper-modal',
 
-        model: new ModelDevice,
-
         template: _.template(myTemplate),
 
         bindings: {
             ':text': {
                 events: ['keyup'],
-                observe: 'deviceName'
+                observe: 'name'
             },
-            '#close': {
+            '#add': {
                 attributes: [{
                     name: 'disabled',
-                    observe: 'deviceName',
+                    observe: 'name',
                     onGet: function(val){
                         return !val;
                     }
@@ -33,10 +30,15 @@ define([
         },
 
         events: {
-            'click #close': 'submit'
+            'click #add': 'addDevice',
+            'click #close': 'remove'
         },
 
-        initialize: function(){
+        initialize: function(opts){
+            this.model = new Model({
+                companyId: opts.companyId
+            });
+
             this.render();
             return this;
         },
@@ -48,10 +50,12 @@ define([
             return this
         },
 
-        submit: function(){
-            this.model.sendName();
+        addDevice: function(e){
+            e.preventDefault();
+            this.model.addDevice();
             this.remove();
         }
+
     });
 
     return ModalView;

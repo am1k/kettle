@@ -48,7 +48,7 @@ define([
         },
 
         events: {
-            'click #login-button': 'login'
+            'submit': 'login'
         },
 
         model:  userModel,
@@ -67,10 +67,10 @@ define([
             this.$el.html(this.template());
         },
 
-        login: function(){
+        login: function(e){
+            e.preventDefault();
             this.model.userLogin().then(function(){
-                console.log(this.model);
-                eventAggregator.trigger('redirect')
+                eventAggregator.trigger('redirect', 'kettles');
             });
         }
 

@@ -1,4 +1,4 @@
-define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator'],
+define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggregator'],
     function($, Backbone, KettleModel, api, eventAggregator){
 
     var mainCollection = Backbone.Collection.extend({
@@ -22,8 +22,8 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
                 this.setActive(id);
             });
         },
-        fill: function(id){
-            api.emit('getKettles');
+        fill: function(id, companyId){
+            api.emit('getKettles', companyId);
             api.once('getKettles', function(data){
                 this.reset(JSON.parse(data));
             }.bind(this));
@@ -34,7 +34,6 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
         },
 
         setActive: function(id){
-            //console.log(this.findWhere({_id: id}), id, typeof id, this.length);
             var model = id ? this.findWhere({_id: id}) : this.at(0);
 
             if(!model){
@@ -46,9 +45,7 @@ define(['jquery', 'backbone', '../models/model', '../api', '../eventAggregator']
             api.emit('changeKettle', model.get('_id'));
 
             api.once('changeKettle', function(data){
-                console.log(data);
                 if(data !== null){
-                    console.log(model);
                     model.set(JSON.parse(data));
                 }
             });

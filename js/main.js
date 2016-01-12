@@ -21,8 +21,8 @@ define([
 
         initialize: function(){
             Backbone.history.start();
-            this.listenTo(eventAggregator, 'redirect', function(){
-                this.navigate('kettles', {replace: true, trigger: true});
+            this.listenTo(eventAggregator, 'redirect', function(path){
+                this.navigate(path, {replace: true, trigger: true});
             });
         },
 
@@ -53,28 +53,27 @@ define([
             }
         },
 
-/*        route: function(route, name, callback) {
+        route: function(route, name, callback) {
             var router = this;
             if (!callback) callback = this[name];
 
             var f = function() {
-                console.log('route before', route);
-                if(route === 'kettles'){
-                    userModel.login().done(function(){
-                        callback.apply(router, arguments);
-                    }).fail(function(){
-
-                    });
-                }else{
-                    userModel.login().always(function(){
-                        callback.apply(router, arguments);
-                    });
-                }
+                //console.log('route before', route);
+                userModel.login().done(function(){
+                    if(route.indexOf('kettles') < 0){
+                        return eventAggregator.trigger('redirect', 'kettles');
+                    }
+                    callback.apply(router, arguments);
+                }.bind(this)).fail(function(){
+                    if(route.indexOf('kettles') === 0){
+                        return eventAggregator.trigger('redirect', '#');
+                    }
+                    callback.apply(router, arguments);
+                }.bind(this));
                 //callback.apply(router, arguments);
-                console.log('route after', route);
             };
             return Backbone.Router.prototype.route.call(this, route, name, f);
-        },*/
+        },
 
         removeView: function(){
             this.currentView && this.currentView.remove();

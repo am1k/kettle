@@ -44,7 +44,7 @@ body {
 }
 #aside {
     background: #ccc;
-    height: 400px;
+    height: 500px;
     float: left;
     position: relative;
 }
@@ -55,7 +55,7 @@ body {
 #main {
     background: lightseagreen;
     width: 535px;
-    height: 400px;
+    height: 500px;
     float: left;
     position: relative;
     transform: translate3d(0, 0, 0);
@@ -71,6 +71,9 @@ h2 {
 .list-kettles {
     padding: 5px 20px;
     border-bottom: 1px solid #000000;
+}
+.list-kettles:hover .remove-btn {
+    display: block;
 }
 .active {
     background: darkgrey;
@@ -190,6 +193,31 @@ h2 {
     border-bottom: 1px solid #000;
     cursor: pointer;
 }
+.remove-btn {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    margin: auto 0;
+    font-size: 15px;
+    color: blue;
+    transition: color 0.2s ease-out;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
 .buy-btn {
     float: right;
     width: 50px;
@@ -215,10 +243,11 @@ h2 {
     background: #000;
 }
 .wrapper-add {
+    position: relative;
     opacity: 1;
     width: 300px;
     height: 100px;
-    padding-top: 10px;
+    padding-top: 25px;
     margin: 100px auto;
     text-align: center;
     background: rgba(19, 35, 47, 0.9);
@@ -233,7 +262,7 @@ h2 {
     padding: 5px;
     margin: 5px 0 20px;
 }
-#close {
+#add {
     display: block;
     width: 75px;
     margin: 0 auto;
@@ -242,7 +271,13 @@ h2 {
     padding: 7px;
     cursor: pointer;
 }
-
+#close {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    color: #fff;
+    cursor: pointer;
+}
 .field-wrap {
     position: relative;
     margin-bottom: 10px;
@@ -285,12 +320,12 @@ input {
     transition: border-color .25s ease, box-shadow .25s ease;
 }
 
-#login-button:disabled, #registration-button:disabled, #close:disabled {
+#login-button:disabled, #registration-button:disabled, #add:disabled {
     cursor: default;
     background: #ccc;
     color: #fff;
 }
-#login-button, #registration-button, .add-btn, #close{
+#login-button, #registration-button, .add-btn, #add, #log-out{
     background: #03a9f4;
     color: #fff;
     display: block;
@@ -305,7 +340,11 @@ input {
     -webkit-transition: .5s ease;
     transition: .5s ease;
 }
-#login-button:hover, #registration-button:hover, .add-btn:hover, #close:hover {
+#log-out a {
+    text-decoration: none;
+    color: #fff;
+}
+#login-button:hover, #registration-button:hover, .add-btn:hover, #close:hover, #log-out:hover {
     background: #0381f4;
     color: #ffffff;
 }
@@ -351,9 +390,12 @@ input[type="radio"] {
 }
 .kettles {
     margin-bottom: 10px;
+    max-height: 350px;
+    overflow-y: auto;
 }
 .kettles li {
     list-style: none;
+    position: relative;
 }
 .temperature {
     visibility: hidden;

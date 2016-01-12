@@ -89,7 +89,7 @@ define([
 
         events: {
 
-            'click #registration-button': 'registration'
+            'submit': 'registration'
         },
 
         template: _.template(mainTemplate),
@@ -106,7 +106,8 @@ define([
             return this;
         },
 
-        registration: function(){
+        registration: function(e){
+            e.preventDefault();
             this.model.signIn();
         }
 

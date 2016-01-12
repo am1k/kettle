@@ -1,50 +1,55 @@
-define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
+define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], function(Backbone, api,$, eventAggregator, _) {
 
-    var busy = false,
+    var defaults = {
+            kettles: 0,
+            token: localStorage.getItem('userToken'),
+            login: '',
+            password: '',
+            confirmPassword: '',
+            user: '',
+            key: '',
+            _id: '',
+            company: '',
+            companyId: '',
+            companyKey: '',
+            Description: '',
+            DescriptionRegistration: '',
+            Code: '',
+            submitting: false
+        },
         loginDefer,
         User = Backbone.Model.extend({
-           defaults: {
-               kettles: 0,
-               token: localStorage.getItem('userToken'),
-               login: '',
-               password: '',
-               confirmPassword: '',
-               user: '',
-               key: '',
-               company: '',
-               Description: '',
-               DescriptionRegistration: '',
-               Code: ''
-           },
+           defaults: defaults,
 
         initialize: function(){
             this.on('change:token', function(model, val){
                 console.log(val);
-                val && localStorage.setItem('userToken', val);
+                val != null && localStorage.setItem('userToken', val);
             });
         },
 
         userLogin: function(){
-            busy = false;
+            this.set('submitting', false);
             return this.login();
         },
 
         login: function(){
             var loginData;
-            if(!busy){
+            if(!this.get('submitting')){
                 loginDefer = $.Deferred();
-                busy = true;
+                this.set('submitting', true);
                 if(this.get('login')){
                     loginData = {
                         login: this.get('login'),
                         password: this.get('password')
                     }
-                }
-                else if(this.get('token')){
+                }else{
                     loginData = {
                         token: this.get('token')
                     };
                 }
+
+                console.log(loginData)
 
                 api.emit('login', JSON.stringify(loginData));
 
@@ -54,6 +59,7 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
                     if(data.Code > 0){
                         this.set('Description', data.Description);
                         this.onLogin();
+                        this.set(data.Data);
                         loginDefer.resolve();
 
                     }else{
@@ -68,14 +74,7 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
             return loginDefer;
         },
 
-        onLogin: function(){
-            //busy = false;
-            api.on('user', function(data){
-                data = JSON.parse(data);
-                console.log(data, 555);
-                localStorage.setItem('userToken', data.token);
-                this.set(data);
-            }.bind(this));
+        onLogin: _.once(function(){
             api.on('user:change', function(data){
                 data = JSON.parse(data);
                 this.set(data.name, data.value);
@@ -85,7 +84,7 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
                     this.set('free', false);
                 }
             }.bind(this));
-        },
+        }),
 
         signIn: function(){
             var self = this;
@@ -102,8 +101,18 @@ define(['backbone', '../api', 'jquery'], function(Backbone, api,$) {
                 self.set('DescriptionRegistration', data.DescriptionRegistration);
                 self.login();
             });
+        },
+
+        logOut: function(){
+            this.set(_.extend(defaults, {
+                token: '',
+                submitting: false
+            }));
+            console.log(this.toJSON())
+            eventAggregator.trigger('redirect', '#');
         }
-       });
+
+    });
 
     return new User;
 });

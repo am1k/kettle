@@ -1,10 +1,10 @@
 define([
     'backbone',
-    '../models/model',
-    '../models/modelDevice',
+    '../models/userModel',
+    '../models/kettleModel',
     '../api'
 
-], function(Backbone, MainModel, ModelDevice, api){
+], function(Backbone, userModel, MainModel, api){
 
     var KeyView = Backbone.View.extend({
 
@@ -33,7 +33,7 @@ define([
         },
 
         sendKey: function(){
-            api.emit('buy');
+            api.emit('buy', userModel.get('_id'));
         }
     });
 

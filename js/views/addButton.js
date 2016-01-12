@@ -1,11 +1,8 @@
 define([
     'backbone',
-    '../models/model',
-    '../models/modelDevice',
-    '../views/modalView',
-    '../api'
+    '../views/modalView'
 
-], function(Backbone, MainModel, ModelDevice, ModalView, api){
+], function(Backbone, ModalView){
 
     var KeyView = Backbone.View.extend({
 
@@ -29,7 +26,7 @@ define([
             }
         },
 
-        initialize: function(){
+        initialize: function(opts){
             this.render();
             this.stickit(this.model, this.bindings);
             return this;
@@ -42,7 +39,9 @@ define([
 
         addDevice: function(){
             if(this.model.get('free') && this.model.get('kettles') <= 3 || !this.model.get('free')){
-                new ModalView();
+                new ModalView({
+                    companyId: this.model.get('companyId')
+                });
             }
         }
     });

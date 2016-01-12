@@ -6,8 +6,9 @@ define([
     '../models/userModel',
     './buyView',
     './addButton',
+    './removeButton',
     '../collections/mainCollection'
-], function(Backbone, mainTemplate, ListView, KettleView,userModel, BuyView, AddButton, MainCollection){
+], function(Backbone, mainTemplate, ListView, KettleView,userModel, BuyView, AddButton, RemoveButton, MainCollection){
 
     var MainView = Backbone.View.extend({
 
@@ -17,18 +18,18 @@ define([
 
         template: _.template(mainTemplate),
 
+        events: {
+            'click #log-out': 'logOut'
+        },
+
         initialize: function(opts){
-            console.log(opts.currentId);
             var kettleView;
             this.$el.html(this.template());
             this.$el.appendTo('#application');
-            this.model.login().then(function(){
-                this.collection.fill(opts.currentId);
-            }.bind(this));
+            this.collection.fill(opts.currentId, this.model.get('companyId'));
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'reset', function(){
                 this.collection.each(this.addOne);
-                console.log(this.model);
                 if(this.model.get('free') && (this.model.get('admin') == true)){
                     this.renderBuyButton();
                 }
@@ -45,7 +46,7 @@ define([
         },
 
         addOne: function(model){
-            var view = new ListView({model: model});
+            var view = new ListView({model: model, removeMode: userModel.get('admin')});
             view.$el.appendTo('.kettles');
         },
 
@@ -59,7 +60,12 @@ define([
                 model: this.model
             });
             view.$el.appendTo('.navigation');
+        },
+
+        logOut: function(){
+            this.model.logOut();
         }
+
 
     });
 

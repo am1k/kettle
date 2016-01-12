@@ -10,9 +10,7 @@ define([
         bindings: {
             '.button-temperature input': {
                 observe: 'targetDegree',
-                onGet: function(val){
-                    console.log(val);
-                }
+                onGet: function(val){}
             },
             '#current-temperature': {
                 observe: 'degree'
@@ -41,7 +39,6 @@ define([
         template: _.template(mainTemplate),
 
         initialize: function(){
-            console.log(this.model);
             this.render();
             return this;
         },
@@ -60,6 +57,7 @@ define([
         turnOn: function(){
             this.model.boil();
         }
+
     });
 
     return MainView;

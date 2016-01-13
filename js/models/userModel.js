@@ -108,7 +108,6 @@ define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], fun
                 token: '',
                 submitting: false
             }));
-            console.log(this.toJSON())
             eventAggregator.trigger('redirect', '#');
         }
 

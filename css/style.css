@@ -400,3 +400,11 @@ input[type="radio"] {
 .temperature {
     visibility: hidden;
 }
+.hide {
+    position: absolute;
+    top: -999px;
+}
+.show-item {
+    position: inherit;
+    top: inherit;
+}

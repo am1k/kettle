@@ -70,6 +70,7 @@ define([
         login: function(e){
             e.preventDefault();
             this.model.userLogin().then(function(){
+                console.log(this.model);
                 eventAggregator.trigger('redirect', 'kettles');
             });
         }

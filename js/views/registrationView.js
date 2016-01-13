@@ -88,8 +88,7 @@ define([
         },
 
         events: {
-
-            'submit': 'registration'
+            'click #registration-button': 'registration'
         },
 
         template: _.template(mainTemplate),

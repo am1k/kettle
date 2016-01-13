@@ -6,9 +6,8 @@ define([
     '../models/userModel',
     './buyView',
     './addButton',
-    './removeButton',
     '../collections/mainCollection'
-], function(Backbone, mainTemplate, ListView, KettleView,userModel, BuyView, AddButton, RemoveButton, MainCollection){
+], function(Backbone, mainTemplate, ListView, KettleView,userModel, BuyView, AddButton, MainCollection){
 
     var MainView = Backbone.View.extend({
 

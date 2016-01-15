@@ -58,19 +58,18 @@ define([
             if (!callback) callback = this[name];
 
             var f = function() {
-                //console.log('route before', route);
+                var args = Array.prototype.slice.call(arguments, 0);
                 userModel.login().done(function(){
                     if(route.indexOf('kettles') < 0){
                         return eventAggregator.trigger('redirect', 'kettles');
                     }
-                    callback.apply(router, arguments);
+                    callback.apply(router, args);
                 }.bind(this)).fail(function(){
                     if(route.indexOf('kettles') === 0){
                         return eventAggregator.trigger('redirect', '#');
                     }
-                    callback.apply(router, arguments);
+                    callback.apply(router, args);
                 }.bind(this));
-                //callback.apply(router, arguments);
             };
             return Backbone.Router.prototype.route.call(this, route, name, f);
         },

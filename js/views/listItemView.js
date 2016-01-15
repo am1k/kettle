@@ -19,12 +19,6 @@ define([
                     onGet: function (val) {
                         return val ? 'active' : ''
                     }
-                }, {
-                    name: 'class',
-                    observe: 'boil',
-                    onGet: function(val){
-                        return val ? 'boil' : ''
-                    }
                 }]
             }
         },
@@ -37,25 +31,13 @@ define([
 
         initialize: function(opts){
             this.render(opts.removeMode);
-            this.listenTo(this.model, 'change:degree', this.boiled);
             this.listenTo(this.model, 'destroy', this.remove);
             return this;
         },
 
         render: function(removeMode){
-            this.$el.html(this.template(_.extend( {remove: removeMode}, this.model.toJSON()  ) ));
+            this.$el.html(this.template(_.extend( {remove: removeMode}, this.model.toJSON() ) ));
             this.stickit(this.model, this.bindings);
-        },
-
-        boiled: function(){
-            if(this.model.get('degree') == this.model.get('targetDegree')) {
-                this.model.set('boil', true);
-            }
-            if(this.model.get('boil') == true){
-                setTimeout(function(){
-                    this.model.set('boil', false);
-                }.bind(this), 5000);
-            }
         },
 
         removeDevice: function(){

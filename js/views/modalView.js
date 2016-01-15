@@ -7,10 +7,6 @@ define([
 
     var ModalView = Backbone.View.extend({
 
-        tagName: 'div',
-
-        className: 'wrapper-modal',
-
         template: _.template(myTemplate),
 
         bindings: {
@@ -31,7 +27,7 @@ define([
 
         events: {
             'click #add': 'addDevice',
-            'click #close': 'remove'
+            'click .close': 'remove'
         },
 
         initialize: function(opts){

@@ -26,7 +26,7 @@ define([
             }
         },
 
-        initialize: function(opts){
+        initialize: function(){
             this.render();
             this.stickit(this.model, this.bindings);
             return this;

@@ -3,6 +3,10 @@ body {
     background: #c1bdba;
 }
 
+#application {
+    width: 740px;
+    margin: 0 auto;
+}
 .application-view {
     width: 150px;
     margin: 140px auto;
@@ -47,6 +51,7 @@ body {
     height: 500px;
     float: left;
     position: relative;
+    z-index: 1;
 }
 .navigation {
     width: 200px;
@@ -58,6 +63,7 @@ body {
     height: 500px;
     float: left;
     position: relative;
+    z-index: 1;
     transform: translate3d(0, 0, 0);
 }
 header {
@@ -225,14 +231,6 @@ h2 {
     border-bottom: 1px solid #000;
     cursor: pointer;
 }
-.wrapper-fade{
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1040;
-}
 .fade {
     position: fixed;
     top: 0;
@@ -240,7 +238,19 @@ h2 {
     bottom: 0;
     left: 0;
     opacity: 0.5;
+    z-index: 2;
     background: #000;
+}
+#popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.wrapper-modal {
+    z-index: 2;
+    position: relative;
 }
 .wrapper-add {
     position: relative;
@@ -252,12 +262,19 @@ h2 {
     text-align: center;
     background: rgba(19, 35, 47, 0.9);
     overflow: hidden;
+    z-index: 3;
+}
+.wrapper-add.boil-modal{
+    height: 45px;
+    padding-top: 25px;
+    color: #fff;
 }
 .wrapper-add input {
     width: 250px;
     height: 28px;
     margin: 0 auto 10px;
 }
+
 .enter-name, .keys {
     padding: 5px;
     margin: 5px 0 20px;
@@ -271,7 +288,7 @@ h2 {
     padding: 7px;
     cursor: pointer;
 }
-#close {
+.close {
     position: absolute;
     top: 1px;
     right: 5px;
@@ -344,7 +361,7 @@ input {
     text-decoration: none;
     color: #fff;
 }
-#login-button:hover, #registration-button:hover, .add-btn:hover, #close:hover, #log-out:hover {
+#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover {
     background: #0381f4;
     color: #ffffff;
 }

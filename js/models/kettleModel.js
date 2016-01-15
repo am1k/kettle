@@ -2,7 +2,7 @@ define(['backbone', '../api'], function(Backbone, api) {
 
     var MainModel = Backbone.Model.extend({
         defaults: {
-            deviceName: ''
+            targetDegree: ''
         },
 
         boil: function(){

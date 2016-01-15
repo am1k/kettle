@@ -1,6 +1,7 @@
 define([
     'backbone',
     'text!../templates/kettle.html'
+
 ], function(Backbone, mainTemplate){
 
     var MainView = Backbone.View.extend({
@@ -9,8 +10,11 @@ define([
 
         bindings: {
             '.button-temperature input': {
+                events: ['change'],
                 observe: 'targetDegree',
-                onGet: function(val){}
+                update: function($els, val){
+                    $els.filter(':checked').attr('checked', false);
+                }
             },
             '#current-temperature': {
                 observe: 'degree'
@@ -18,7 +22,10 @@ define([
             '#start': {
                 attributes: [{
                     name: 'disabled',
-                    observe: 'powerOn'
+                    observe: ['powerOn', 'targetDegree'],
+                    onGet: function(values){
+                        return (!values[0] && !values[1])
+                    }
                 }]
             },
             '#scale': {
@@ -44,7 +51,6 @@ define([
         },
 
         applyModel: function(model){
-            this.model && this.unstickit(this.model, this.bindings);
             this.model = model;
             this.stickit(this.model, this.bindings);
         },

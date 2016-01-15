@@ -1,5 +1,5 @@
-define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggregator'],
-    function($, Backbone, KettleModel, api, eventAggregator){
+define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggregator', '../views/boilReadyModalView'],
+    function($, Backbone, KettleModel, api, eventAggregator, boilReadyModalView){
 
     var mainCollection = Backbone.Collection.extend({
         model: KettleModel,
@@ -8,6 +8,11 @@ define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggreg
                 data = JSON.parse(data);
                 console.log(data);
                 this.currentModel.set(data.name, data.value);
+            }.bind(this));
+
+            api.on('boiled', function(data){
+                data = JSON.parse(data);
+                new boilReadyModalView({model: data})
             }.bind(this));
 
             api.on('addDevice', function(data){
@@ -51,6 +56,7 @@ define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggreg
             });
 
             this.trigger('setActive', model);
+
             model.set('active', true);
 
             if(this.currentModel !== undefined) {

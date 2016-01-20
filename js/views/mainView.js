@@ -41,6 +41,13 @@ define([
                 kettleView.applyModel(model);
             });
 
+            this.listenTo(this.collection, 'deleteView', function(){
+                if(kettleView){
+                    kettleView.remove();
+                    kettleView = null;
+                }
+            });
+
             return this;
         },
 

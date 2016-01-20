@@ -21,10 +21,12 @@ define(['backbone', '../api'], function(Backbone, api) {
                 companyId: this.get('companyId')
             }));
 
-            api.once('remove', function(code){
-                if(code > 0){
+            api.once('remove', function(data){
+                data = JSON.parse(data);
+                if(data.Code > 0){
                     this.destroy();
                 }
+
             }.bind(this));
         }
     });

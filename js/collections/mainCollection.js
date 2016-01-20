@@ -2,7 +2,9 @@ define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggreg
     function($, Backbone, KettleModel, api, eventAggregator, boilReadyModalView){
 
     var mainCollection = Backbone.Collection.extend({
+
         model: KettleModel,
+
         initialize: function(){
             api.on('change', function(data){
                 data = JSON.parse(data);
@@ -16,11 +18,17 @@ define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggreg
             }.bind(this));
 
             api.on('addDevice', function(data){
-                console.log(JSON.parse(data));
-                this.add(JSON.parse(data));
+                data = JSON.parse(data);
+                this.add(data);
                 if(this.length === 1){
                     this.setActive();
+                    eventAggregator.trigger('redirect', 'kettles/' + data._id );
                 }
+            }.bind(this));
+
+            this.on('remove', function(){
+                console.log('remove');
+                this.setActive();
             }.bind(this));
 
             this.listenTo(eventAggregator, 'currentId', function(id){
@@ -39,16 +47,20 @@ define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggreg
         },
 
         setActive: function(id){
-            var model = id ? this.findWhere({_id: id}) : this.at(0);
 
-            if(!model){
-                model = this.at(0);
-                if(!model){
-                    return;
-                }
+            if(!id && (this.at(0) !== undefined)){
+                eventAggregator.trigger('redirect', 'kettles/' + this.at(0).get('_id'));
+                return;
             }
-            api.emit('changeKettle', model.get('_id'));
+            if(id == undefined) {
+                this.trigger('deleteView');
+                eventAggregator.trigger('redirect', 'kettles');
+                return;
+            }
 
+            var model = this.findWhere({_id: id});
+
+            api.emit('changeKettle', model.get('_id'));
             api.once('changeKettle', function(data){
                 if(data !== null){
                     model.set(JSON.parse(data));
@@ -59,12 +71,11 @@ define(['jquery', 'backbone', '../models/kettleModel', '../api', '../eventAggreg
 
             model.set('active', true);
 
-            if(this.currentModel !== undefined) {
+            if(this.currentModel !== model && this.currentModel !== undefined ) {
                 this.currentModel.set('active', false);
             }
 
             this.currentModel = model;
-
         }
 
     });

@@ -337,7 +337,12 @@ input {
     transition: border-color .25s ease, box-shadow .25s ease;
 }
 
-#login-button:disabled, #registration-button:disabled, #add:disabled {
+#login-button:disabled, #registration-button:disabled, #add:disabled, .add-btn:disabled {
+    cursor: default;
+    background: #ccc;
+    color: #fff;
+}
+#login-button:disabled:hover, #registration-button:disabled:hover, #add:disabled:hover, .add-btn:disabled:hover {
     cursor: default;
     background: #ccc;
     color: #fff;
@@ -365,6 +370,7 @@ input {
     background: #0381f4;
     color: #ffffff;
 }
+
 .text {
     color: #fff;
     font-size: 16px;

@@ -6,13 +6,11 @@ define([
 
     var MainView = Backbone.View.extend({
 
-        el: '.main',
-
         bindings: {
             '.button-temperature input': {
                 events: ['change'],
                 observe: 'targetDegree',
-                update: function($els, val){
+                update: function($els){
                     $els.filter(':checked').attr('checked', false);
                 }
             },
@@ -57,6 +55,7 @@ define([
 
         render: function(){
             this.$el.html(this.template());
+            this.$el.appendTo('.main');
             return this;
         },
 

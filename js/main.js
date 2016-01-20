@@ -48,7 +48,7 @@ define([
             if(!this.currentView || this.currentView && !(this.currentView instanceof MainView)){
                 this.removeView();
                 this.currentView = new MainView({currentId: id});
-            }else if(id){
+            } else if(id){
                 eventAggregator.trigger('currentId', id);
             }
         },

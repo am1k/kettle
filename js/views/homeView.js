@@ -1,28 +1,38 @@
 define([
     'backbone',
-    'text!../templates/main-page.html'
+    'text!../templates/main-page.html',
+    '../models/appModel'
 
-], function(Backbone, mainTemplate){
-
-    Backbone.View.prototype.close = function(){
-        this.unstickit(this.model, this.bindings);
-        this.remove();
-    };
+], function(Backbone, mainTemplate, AppModel){
 
     var MainPage = Backbone.View.extend({
 
         className: 'application-view',
 
+        model: AppModel,
+
+        translation: [
+            {
+                selector: '#login',
+                field: 'login'
+            },
+            {
+                selector: '#registration',
+                field: 'registration'
+            }
+        ],
+
         template: _.template(mainTemplate),
 
-
         initialize: function(){
-           this.render();
-           return this;
+
+            this.render();
+            this.applyTranslation();
+            return this;
         },
 
         render: function(){
-           this.$el.html(this.template());
+            this.$el.html(this.template());
         }
 
     });

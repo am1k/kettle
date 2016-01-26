@@ -6,11 +6,6 @@ define([
 
 ], function(Backbone, mainTemplate, userModel, eventAggregator){
 
-    Backbone.View.prototype.close = function(){
-        this.unstickit(this.model, this.bindings);
-        this.remove();
-    };
-
     var LoginPage = Backbone.View.extend({
 
         bindings: {
@@ -51,6 +46,28 @@ define([
             'submit': 'login'
         },
 
+        translation: [
+            {
+                selector: '#login',
+                field: 'login',
+                attr: 'placeholder'
+            },
+            {
+                selector: '#password',
+                field: 'password',
+                attr: 'placeholder'
+            },
+            {
+                selector: '#login-button',
+                field: 'login'
+            },
+            {
+                selector: '#home',
+                field: 'home'
+            }
+        ],
+
+
         model:  userModel,
 
         className: 'login-form',
@@ -59,6 +76,7 @@ define([
 
         initialize: function(){
             this.render();
+            this.applyTranslation();
             this.stickit(this.model, this.bindings);
             return this;
         },

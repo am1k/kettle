@@ -41,6 +41,17 @@ define([
             'click #start' : 'turnOn'
         },
 
+        translation: [
+            {
+                selector: '#kettle',
+                field: 'kettle'
+            },
+            {
+                selector: '#start',
+                field: 'start'
+            }
+        ],
+
         template: _.template(mainTemplate),
 
         initialize: function(){
@@ -56,6 +67,7 @@ define([
         render: function(){
             this.$el.html(this.template());
             this.$el.appendTo('.main');
+            this.applyTranslation();
             return this;
         },
 

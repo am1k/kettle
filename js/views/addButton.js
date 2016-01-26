@@ -14,6 +14,13 @@ define([
             'click': 'addDevice'
         },
 
+        translation: [
+            {
+                selector: ':el',
+                field: 'addDevice'
+            }
+        ],
+
         bindings: {
             ':el': {
                 attributes: [{
@@ -33,7 +40,7 @@ define([
         },
 
         render: function(){
-            this.$el.html('Add Device');
+            this.applyTranslation();
             return this
         },
 

@@ -1,7 +1,9 @@
 define([
     'backbone',
     'text!../templates/registration-template.html',
-    '../models/userModel'
+    '../models/userModel',
+    '../models/appModel',
+    '../models/localeModel'
 
 ],function(Backbone, mainTemplate, userModel){
 
@@ -10,6 +12,55 @@ define([
         model: userModel,
 
         className: 'registration-form',
+
+        translation: [
+            {
+                selector: '.user-label',
+                field: 'user'
+            },
+            {
+                selector: '.company-label',
+                field: 'company'
+            },
+            {
+                selector: '#registration-button',
+                field: 'registration'
+            },
+            {
+                selector: '#go',
+                field: 'go'
+            },
+            {
+                selector: '#back',
+                field: 'home'
+            },
+            {
+                selector: '#name',
+                field: 'user-name',
+                attr: 'placeholder'
+            },
+            {
+                selector: '#password',
+                field: 'password',
+                attr: 'placeholder'
+            },
+            {
+                selector: '#confirmPassword',
+                field: 'confirm-password',
+                attr: 'placeholder'
+            },
+            {
+                selector: '#enterCompany',
+                field: 'enter-company',
+                attr: 'placeholder'
+            },
+            {
+                selector: '#enterKey',
+                field: 'enter-key',
+                attr: 'placeholder'
+            },
+
+        ],
 
         bindings: {
             '#name': {
@@ -96,6 +147,7 @@ define([
 
         initialize: function(){
             this.render();
+            this.applyTranslation();
             this.stickit(this.model, this.bindings);
             return this;
         },

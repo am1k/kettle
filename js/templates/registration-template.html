@@ -1,38 +1,38 @@
 <form id="registration">
     <div class="field-wrap">
         <label for="name"></label>
-        <input type="text" id="name" placeholder="User Name" required>
+        <input type="text" id="name" placeholder="" required>
     </div>
     <div class="field-wrap">
         <label for="password"></label>
-        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="password" placeholder="" required>
     </div>
     <div class="field-wrap bottom-null">
         <label for="confirmPassword"></label>
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <input type="password" id="confirmPassword" placeholder="" required>
     </div>
     <div class="field-wrap radio-buttons">
-        <label class="radio"> User
+        <label class="radio"><span class="user-label"></span>
             <input class="type-user" id="user" type="radio" name="user" value="user">
         </label>
-        <label class="radio"> Company
+        <label class="radio"><span class="company-label"></span>
             <input class="type-company" id="company" type="radio" name="user" value="company">
         </label>
     </div>
     <div class="field-wrap enter-company">
         <label for="enterCompany"></label>
-        <input type="text" id="enterCompany" placeholder="Company Name" required>
+        <input type="text" id="enterCompany" placeholder="" required>
     </div>
     <div class="field-wrap enter-key">
         <label for="enterCompany"></label>
-        <input type="text" id="enterKey" placeholder="Enter Key" required>
+        <input type="text" id="enterKey" placeholder="" required>
     </div>
-    <button type="submit" class="button button-block" id="registration-button">Registration</button>
+    <button type="submit" class="button button-block" id="registration-button"></button>
     <div id="key">
         <div class="text"></div>
-        <a href="#kettles">Go</a>
+        <a href="#kettles" id="go"></a>
     </div>
     <div class="back">
-        <a href="#">Home</a>
+        <a href="#" id="back"></a>
     </div>
 </form>

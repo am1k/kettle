@@ -7,6 +7,7 @@ define([
     './buyView',
     './addButton',
     '../collections/mainCollection'
+
 ], function(Backbone, mainTemplate, ListView, KettleView,userModel, BuyView, AddButton, MainCollection){
 
     var MainView = Backbone.View.extend({
@@ -25,6 +26,7 @@ define([
             var kettleView;
             this.$el.html(this.template());
             this.$el.appendTo('#application');
+            this.applyTranslation();
             this.collection.fill(opts.currentId, this.model.get('companyId'));
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'reset', function(){
@@ -50,6 +52,17 @@ define([
 
             return this;
         },
+
+        translation: [
+            {
+                selector: '#device',
+                field: 'device'
+            },
+            {
+                selector: '#log-out',
+                field: 'log-out'
+            }
+        ],
 
         addOne: function(model){
             var view = new ListView({model: model, removeMode: userModel.get('admin')});

@@ -143,13 +143,6 @@ h2 {
     cursor: pointer;
     position: relative;
 }
-#start:before {
-    content: 'Press';
-    position: absolute;
-    top: 30%;
-    left: 20%;
-    color: #fff;
-}
 #start:disabled {
     opacity: 0.7;
     cursor: default;
@@ -173,7 +166,7 @@ h2 {
 .bottom-content {
     padding-top: 30px;
 }
-.temperature:checked + label {
+.temperature:checked + label, .language:checked + label {
     background: palevioletred;
 }
 
@@ -190,11 +183,27 @@ h2 {
     border: none;
     position: relative;
 }
+.select-language {
+    position: relative;
+    z-index: 999;
+}
+.select-language label {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+    padding: 5px;
+    margin: 20px auto;
+    outline: 1px solid #fff;
+    border: none;
+    position: relative;
+}
 .add-btn {
     text-align: center;
     margin: 0 auto 10px;
     width: 85px;
-    height: 30px;
     display: block;
     border-bottom: 1px solid #000;
     cursor: pointer;
@@ -420,7 +429,7 @@ input[type="radio"] {
     list-style: none;
     position: relative;
 }
-.temperature {
+.temperature, .language {
     visibility: hidden;
 }
 .hide {

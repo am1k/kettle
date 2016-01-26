@@ -16,6 +16,13 @@ define([
             'click': 'sendKey'
         },
 
+        translation: [
+            {
+                selector: ':el',
+                field: 'buy'
+            }
+        ],
+
         initialize: function(){
             this.render();
             api.once('buy', function(code){
@@ -28,7 +35,7 @@ define([
         },
 
         render: function(){
-            this.$el.html('Buy');
+            this.applyTranslation();
             return this
         },
 

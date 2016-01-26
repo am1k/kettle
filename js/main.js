@@ -6,9 +6,52 @@ define([
     './views/homeView',
     './views/loginView',
     './views/registrationView',
-    './models/userModel'
+    './views/changeLanguageView',
+    './models/userModel',
+    './models/localeModel'
 
-], function(Backbone, $, MainView, eventAggregator, HomeView, LoginView, RegistrationView, userModel){
+], function(
+    Backbone,
+    $,
+    MainView,
+    eventAggregator,
+    HomeView,
+    LoginView,
+    RegistrationView,
+    changeLanguageView,
+    userModel,
+    localeModel){
+
+    Backbone.View.prototype.close = function(){
+        this.unstickit(this.model, this.bindings);
+        this.remove();
+    };
+
+    Backbone.View.prototype.applyTranslation = function(){
+        if(!this.translation){
+            console.log('add translation');
+            return;
+        }
+        var data = this.translation.reduce(function(res, cur){
+            console.log(cur);
+            if(cur.attr){
+                res[cur.selector] = {
+                    attributes: [{
+                        name: cur.attr,
+                        observe: cur.field
+                    }]
+                }
+            } else {
+                res[cur.selector] = {
+                    observe: cur.field
+                };
+            }
+            return res;
+        }, {});
+
+        this.stickit(localeModel, data);
+    };
+
 
     var MyRouter = Backbone.Router.extend({
         currentView: null,
@@ -21,9 +64,11 @@ define([
 
         initialize: function(){
             Backbone.history.start();
+            new changeLanguageView();
             this.listenTo(eventAggregator, 'redirect', function(path){
                 this.navigate(path, {replace: true, trigger: true});
             });
+
         },
 
         home: function(){

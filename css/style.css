@@ -371,7 +371,7 @@ input {
     background: #ccc;
     color: #fff;
 }
-#login-button, #registration-button, .add-btn, #add, #log-out, .back a{
+#login-button, #registration-button, .add-btn, #add, #log-out, .back a, #go{
     background: -webkit-linear-gradient(#4d496c, #332e5b, #4d496c);
     background: -o-linear-gradient(#4d496c, #332e5b, #4d496c);
     background: -moz-linear-gradient(#4d496c, #332e5b, #4d496c);
@@ -395,7 +395,7 @@ input {
     text-decoration: none;
     color: #fff;
 }
-#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover, .back a:hover {
+#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover, .back a:hover, #go:hover {
     background: -webkit-linear-gradient(#675eaf, #8781bd, #675eaf);
     background: -o-linear-gradient(#675eaf, #8781bd, #675eaf);
     background: -moz-linear-gradient(#675eaf, #8781bd, #675eaf);
@@ -434,6 +434,7 @@ input[type="radio"] {
 }
 #key.show {
     display: block;
+    text-align: center;
 }
 #key a {
     text-align: center;

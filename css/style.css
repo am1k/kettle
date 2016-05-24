@@ -1,6 +1,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #c1bdba;
+    background: url("../img/bg.png");
+    background-position: 50% 0%;
 }
 
 #application {
@@ -12,7 +13,7 @@ body {
     margin: 140px auto;
 }
 .application-view  a {
-    background: #03a9f4;
+    background: #4d496c;
     color: #fff;
     display: block;
     text-decoration: none;
@@ -25,6 +26,8 @@ body {
     -webkit-transition: .5s ease;
     transition: .5s ease;
     margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 40px #332d5b inset;
 }
 .application-view  a:hover {
     background: #0381f4;
@@ -34,8 +37,8 @@ body {
     width: 300px;
     margin: 130px auto;
     padding: 10px;
-    background: rgba(19, 35, 47, 0.9);
-    border-radius: 4px;
+    background: rgba(52,52,52,0.9);
+    border-radius: 20px;
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 .center {
@@ -167,7 +170,8 @@ h2 {
     padding-top: 30px;
 }
 .temperature:checked + label, .language:checked + label {
-    background: palevioletred;
+    background: #4d496c;
+    text-decoration: underline;
 }
 
 .button-temperature label {
@@ -186,15 +190,18 @@ h2 {
 .select-language {
     position: relative;
     z-index: 999;
+    text-align: right;
 }
 .select-language label {
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     cursor: pointer;
-    background: transparent;
+    background: #8781bd;
     color: #fff;
-    padding: 5px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
     margin: 20px auto;
     outline: 1px solid #fff;
     border: none;
@@ -308,6 +315,13 @@ h2 {
     position: relative;
     margin-bottom: 10px;
 }
+.field-wrap input {
+    width: 75%;
+    margin: 5% auto;
+    border-radius: 5px;
+    background: #fff;
+    color: #757575;
+}
 label {
     display: inline-block;
     max-width: 100%;
@@ -350,14 +364,18 @@ input {
     cursor: default;
     background: #ccc;
     color: #fff;
+    border-radius: 5px;
 }
 #login-button:disabled:hover, #registration-button:disabled:hover, #add:disabled:hover, .add-btn:disabled:hover {
     cursor: default;
     background: #ccc;
     color: #fff;
 }
-#login-button, #registration-button, .add-btn, #add, #log-out{
-    background: #03a9f4;
+#login-button, #registration-button, .add-btn, #add, #log-out, .back a{
+    background: -webkit-linear-gradient(#4d496c, #332e5b, #4d496c);
+    background: -o-linear-gradient(#4d496c, #332e5b, #4d496c);
+    background: -moz-linear-gradient(#4d496c, #332e5b, #4d496c);
+    background: linear-gradient(#4d496c, #332e5b, #4d496c);
     color: #fff;
     display: block;
     border: none;
@@ -366,20 +384,24 @@ input {
     font-size: 14px;
     width: 100px;
     margin: 0 auto;
+    border-radius: 5px;
     text-align: center;
     cursor: pointer;
     -webkit-transition: .5s ease;
     transition: .5s ease;
+    box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3);
 }
 #log-out a {
     text-decoration: none;
     color: #fff;
 }
-#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover {
-    background: #0381f4;
-    color: #ffffff;
+#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover, .back a:hover {
+    background: -webkit-linear-gradient(#675eaf, #8781bd, #675eaf);
+    background: -o-linear-gradient(#675eaf, #8781bd, #675eaf);
+    background: -moz-linear-gradient(#675eaf, #8781bd, #675eaf);
+    background: linear-gradient(#675eaf, #8781bd, #675eaf);
+    color: #363636;
 }
-
 .text {
     color: #fff;
     font-size: 16px;
@@ -389,12 +411,17 @@ input {
 .radio-buttons {
     height: 30px;
     margin-bottom: 15px !important;
+    width: 80%;
+    margin: 0 auto;
 }
 .radio {
     position: relative !important;
     width: 45%;
     display: inline-block;
     margin: 0;
+}
+.radio span {
+    color: #fff;
 }
 input[type="radio"] {
     height: auto !important;

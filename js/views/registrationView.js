@@ -51,7 +51,7 @@ define([
             },
             {
                 selector: '#enterCompany',
-                field: 'enter-company',
+                field: 'company-name',
                 attr: 'placeholder'
             },
             {

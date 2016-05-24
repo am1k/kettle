@@ -35,7 +35,6 @@ define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], fun
 
         login: function(){
             var loginData;
-            if(!this.get('submitting')){
                 loginDefer = $.Deferred();
                 this.set('submitting', true);
                 if(this.get('login')){
@@ -49,13 +48,10 @@ define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], fun
                     };
                 }
 
-                console.log(loginData)
-
                 api.emit('login', JSON.stringify(loginData));
 
                 api.once('login', function(data){
                     data = JSON.parse(data);
-                    console.log(data);
                     if(data.Code > 0){
                         this.set('Description', data.Description);
                         this.onLogin();
@@ -69,7 +65,6 @@ define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], fun
                         loginDefer.reject(data);
                     }
                 }.bind(this));
-            }
 
             return loginDefer;
         },

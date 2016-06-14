@@ -4,24 +4,23 @@
 <main>
     <div class="center-content">
         <div class="left-part">
-            <div class="view-temperature">
-                <div id="scale"></div>
+            <div class="bottom-content">
+                <div class="button-temperature">
+                    <input class="temperature" id="lab1" type="radio" name="selectTemperature" value="65">
+                    <label for="lab1">65</label>
+                    <input class="temperature" id="lab2" type="radio" name="selectTemperature" value="75">
+                    <label for="lab2">75</label>
+                    <input class="temperature" id="lab3" type="radio" name="selectTemperature" value="85">
+                    <label for="lab3">85</label>
+                    <input class="temperature" id="lab4" type="radio" name="selectTemperature" value="100">
+                    <label for="lab4">100</label>
+                </div>
             </div>
+            <button id="start"></button>
         </div>
         <div class="right-part">
-            <button id="start"></button>
-            <div id="current-temperature"></div>
-        </div>
-        <div class="bottom-content">
-            <div class="button-temperature">
-                <input class="temperature" id="lab1" type="radio" name="selectTemperature" value="65">
-                <label for="lab1">65</label>
-                <input class="temperature" id="lab2" type="radio" name="selectTemperature" value="75">
-                <label for="lab2">75</label>
-                <input class="temperature" id="lab3" type="radio" name="selectTemperature" value="85">
-                <label for="lab3">85</label>
-                <input class="temperature" id="lab4" type="radio" name="selectTemperature" value="100">
-                <label for="lab4">100</label>
+            <div class="view-temperature">
+                <div id="scale"></div>
             </div>
         </div>
     </div>

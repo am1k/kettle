@@ -14,9 +14,6 @@ define([
                     $els.filter(':checked').attr('checked', false);
                 }
             },
-            '#current-temperature': {
-                observe: 'degree'
-            },
             '#start': {
                 attributes: [{
                     name: 'disabled',
@@ -29,8 +26,9 @@ define([
             '#scale': {
                 attributes: [{
                     name: 'style',
-                    observe: 'waterLevel',
+                    observe: 'degree',
                     onGet: function(val){
+                        console.log(val);
                         return 'height:' +  val + '%';
                     }
                 }]

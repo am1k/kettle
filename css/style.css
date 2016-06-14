@@ -1,8 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Vollkorn);
+
 body {
-    font-family: 'Open Sans', sans-serif;
-    background: url("../img/bg.png");
-    background-position: 50% 0%;
+    font-family: 'Vollkorn', serif;
+    background: url("../img/bg.gif") no-repeat;
+    background-size: cover;
 }
+
 
 #application {
     width: 740px;
@@ -50,8 +53,8 @@ body {
     padding: 10px;
 }
 #aside {
-    background: #ccc;
-    height: 500px;
+    background-color: rgba(158, 158, 158, 0.9);
+    height: 400px;
     float: left;
     position: relative;
     z-index: 1;
@@ -61,25 +64,26 @@ body {
     transform: translate3d(0, 0, 0);
 }
 #main {
-    background: lightseagreen;
+    background-color: rgba(52, 52, 52, 0.9);
     width: 535px;
-    height: 500px;
+    height: 400px;
     float: left;
     position: relative;
     z-index: 1;
     transform: translate3d(0, 0, 0);
 }
-header {
-    padding-bottom: 15px;
-    border-bottom: 2px solid #000;
-}
 h2 {
     text-align: center;
-    border-bottom: 1px solid #000000;
+    color: #fff;
+    font-size: 36px;
 }
 .list-kettles {
     padding: 5px 20px;
-    border-bottom: 1px solid #000000;
+
+}
+.list-kettles a {
+    font-size: 20px;
+    text-decoration: none;
 }
 .list-kettles:hover .remove-btn {
     display: block;
@@ -93,7 +97,10 @@ h2 {
 .sub-header {
     padding: 10px 0 5px;
     overflow: hidden;
-    background: green;
+    position: absolute;
+    top: -58px;
+    right: 175px;
+    width: 400px;
 }
 .timer {
     float: left;
@@ -109,11 +116,9 @@ h2 {
     cursor: pointer;
 }
 .view-temperature {
-    height: 100px;
-    width: 30px;
-    margin: 10px auto;
-    border-radius: 15px;
-    border: 2px solid #fff;
+    background: url("../img/termometro.png")no-repeat;
+    width: 92px;
+    height: 260px;
     position: relative;
     z-index: 2;
     overflow: hidden;
@@ -121,30 +126,31 @@ h2 {
 #scale {
     width: 30px;
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
+    left: 31px;
     z-index: 1;
-    background: orangered;
+    background: #e82128;
 }
 .left-part {
-    width: 60%;
+    width: 70%;
     display: inline-block;
+    vertical-align: top;
 }
 .right-part {
-    width: 38%;
+    width: 28%;
     display: inline-block;
 }
 #start {
-    text-align: center;
-    display: block;
-    background: transparent;
+    background: -webkit-linear-gradient(#4d496c, #332e5b, #4d496c);
+    background: -o-linear-gradient(#4d496c, #332e5b, #4d496c);
+    background: -moz-linear-gradient(#4d496c, #332e5b, #4d496c);
+     background: linear-gradient(#4d496c, #332e5b, #4d496c);
     color: #fff;
-    width: 50px;
-    height: 50px;
-    margin: 20px auto;
-    outline: 1px solid #fff;
-    border: none;
-    cursor: pointer;
-    position: relative;
+    padding: 10px 65px;
+    width: 162px;
+    margin: 45px auto;
+    display: block;
+    border-radius: 7px;
 }
 #start:disabled {
     opacity: 0.7;
@@ -166,12 +172,15 @@ h2 {
     color: #fff;
     padding-top: 20px;
 }
-.bottom-content {
-    padding-top: 30px;
-}
-.temperature:checked + label, .language:checked + label {
-    background: #4d496c;
+.temperature:checked + label {
+    background: url("../img/button-temperature-active.png")no-repeat;
+    width: 59px;
+    height: 61px;
     text-decoration: underline;
+}
+.language:checked + label {
+    background: #4d496c;
+    text-decoration: underline;;
 }
 
 .button-temperature label {
@@ -179,17 +188,19 @@ h2 {
     vertical-align: middle;
     text-align: center;
     cursor: pointer;
+    padding: 0;
+    line-height: 66px;
     background: transparent;
     color: #fff;
-    padding: 20px;
-    margin: 20px auto;
-    outline: 1px solid #fff;
     border: none;
     position: relative;
+    background: url("../img/button-temperature.png")no-repeat;
+    width: 59px;
+    height: 61px;
 }
 .select-language {
     position: relative;
-    z-index: 999;
+    z-index: 1;
     text-align: right;
 }
 .select-language label {
@@ -240,13 +251,6 @@ h2 {
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;
 }
-.buy-btn {
-    float: right;
-    width: 50px;
-    height: 30px;
-    border-bottom: 1px solid #000;
-    cursor: pointer;
-}
 .fade {
     position: fixed;
     top: 0;
@@ -276,17 +280,20 @@ h2 {
     padding-top: 25px;
     margin: 100px auto;
     text-align: center;
-    background: rgba(19, 35, 47, 0.9);
+    background: #fff url("../img/boil-kettle.png")no-repeat;
+    background-position: 0 95%;
     overflow: hidden;
     z-index: 3;
 }
 .wrapper-add.boil-modal{
     height: 45px;
     padding-top: 25px;
-    color: #fff;
+    color: #222;
+    font-size: 16px;
 }
 .wrapper-add input {
     width: 250px;
+    color: #222;
     height: 28px;
     margin: 0 auto 10px;
 }
@@ -308,7 +315,7 @@ h2 {
     position: absolute;
     top: 1px;
     right: 5px;
-    color: #fff;
+    color: #222;
     cursor: pointer;
 }
 .field-wrap {
@@ -316,6 +323,7 @@ h2 {
     margin-bottom: 10px;
 }
 .field-wrap input {
+    font-family: 'Vollkorn', serif;
     width: 75%;
     margin: 5% auto;
     border-radius: 5px;
@@ -360,18 +368,18 @@ input {
     transition: border-color .25s ease, box-shadow .25s ease;
 }
 
-#login-button:disabled, #registration-button:disabled, #add:disabled, .add-btn:disabled {
+#login-button:disabled, #registration-button:disabled, #add:disabled, .add-btn:disabled, #start:disabled {
     cursor: default;
     background: #ccc;
     color: #fff;
     border-radius: 5px;
 }
-#login-button:disabled:hover, #registration-button:disabled:hover, #add:disabled:hover, .add-btn:disabled:hover {
+#login-button:disabled:hover, #registration-button:disabled:hover, #add:disabled:hover, .add-btn:disabled:hover, #start:disabled:hover {
     cursor: default;
     background: #ccc;
     color: #fff;
 }
-#login-button, #registration-button, .add-btn, #add, #log-out, .back a, #go{
+#login-button, #registration-button, .add-btn, #add, #log-out, .back a, #go, .buy-btn{
     background: -webkit-linear-gradient(#4d496c, #332e5b, #4d496c);
     background: -o-linear-gradient(#4d496c, #332e5b, #4d496c);
     background: -moz-linear-gradient(#4d496c, #332e5b, #4d496c);
@@ -382,6 +390,7 @@ input {
     text-decoration: none;
     padding: 7px;
     font-size: 14px;
+    font-family: 'Vollkorn', serif;
     width: 100px;
     margin: 0 auto;
     border-radius: 5px;
@@ -390,17 +399,25 @@ input {
     -webkit-transition: .5s ease;
     transition: .5s ease;
     box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3);
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
 #log-out a {
     text-decoration: none;
     color: #fff;
 }
-#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover, .back a:hover, #go:hover {
-    background: -webkit-linear-gradient(#675eaf, #8781bd, #675eaf);
-    background: -o-linear-gradient(#675eaf, #8781bd, #675eaf);
-    background: -moz-linear-gradient(#675eaf, #8781bd, #675eaf);
-    background: linear-gradient(#675eaf, #8781bd, #675eaf);
+#login-button:hover, #registration-button:hover, .add-btn:hover, .close:hover, #log-out:hover, .back a:hover, #go:hover, #start:hover, .buy-btn:hover {
+    background: -webkit-linear-gradient(#4d496c, #fff, #4d496c);
+    background: -o-linear-gradient(#4d496c, #fff, #4d496c);
+    background: -moz-linear-gradient(#4d496c, #fff, #4d496c);
+    background: linear-gradient(#4d496c, #fff, #4d496c);
     color: #363636;
+}
+.buy-btn {
+    position: absolute;
+    top: 10px;
+    right: 0;
 }
 .text {
     color: #fff;
@@ -414,9 +431,15 @@ input {
     width: 80%;
     margin: 0 auto;
 }
+.radio-buttons .radio:first-child {
+    float: left;
+}
+.radio-buttons .radio:last-child {
+    float: right;
+}
 .radio {
     position: relative !important;
-    width: 45%;
+    width: 46%;
     display: inline-block;
     margin: 0;
 }
@@ -456,6 +479,8 @@ input[type="radio"] {
 .kettles li {
     list-style: none;
     position: relative;
+    background: #fff;
+    margin: 3px;
 }
 .temperature, .language {
     visibility: hidden;

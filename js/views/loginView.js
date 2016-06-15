@@ -32,6 +32,7 @@ define([
                     updateModel: false,
                     name: 'class',
                     onGet: function(val){
+                        console.log(val);
                         return val ? 'show': '';
                     }
                 }]

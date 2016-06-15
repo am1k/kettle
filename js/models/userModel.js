@@ -30,7 +30,7 @@ define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], fun
 
         userLogin: function(){
             this.set('submitting', false);
-            return this.login();
+            return this.loginUser();
         },
 
         login: function(){
@@ -53,6 +53,43 @@ define(['backbone', '../api', 'jquery', '../eventAggregator', 'underscore'], fun
                 api.once('login', function(data){
                     data = JSON.parse(data);
                     if(data.Code > 0){
+                        console.log(data.Code);
+                        this.onLogin();
+                        this.set(data.Data);
+                        loginDefer.resolve();
+
+                    }else{
+                        console.log(data.Code);
+                        this.set('Code', data.Code);
+                        loginDefer.reject(data);
+                    }
+                }.bind(this));
+
+
+            return loginDefer;
+        },
+
+        loginUser: function(){
+            var loginData;
+                loginDefer = $.Deferred();
+                this.set('submitting', true);
+                if(this.get('login')){
+                    loginData = {
+                        login: this.get('login'),
+                        password: this.get('password')
+                    }
+                }else{
+                    loginData = {
+                        token: this.get('token')
+                    };
+                }
+
+                api.emit('login', JSON.stringify(loginData));
+
+                api.once('login', function(data){
+                    data = JSON.parse(data);
+                    if(data.Code > 0){
+                        console.log(data.Code);
                         this.set('Description', data.Description);
                         this.onLogin();
                         this.set(data.Data);

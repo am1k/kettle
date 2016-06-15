@@ -33,7 +33,6 @@ define([
             return;
         }
         var data = this.translation.reduce(function(res, cur){
-            console.log(cur);
             if(cur.attr){
                 res[cur.selector] = {
                     attributes: [{

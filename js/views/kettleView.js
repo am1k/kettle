@@ -28,8 +28,8 @@ define([
                     name: 'style',
                     observe: 'degree',
                     onGet: function(val){
-                        console.log(val);
-                        return 'height:' +  val + '%';
+                        var degree = val - 10;
+                        return 'height:' +  degree + '%';
                     }
                 }]
             }

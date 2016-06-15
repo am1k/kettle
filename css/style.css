@@ -89,7 +89,10 @@ h2 {
     display: block;
 }
 .active {
-    background: darkgrey;
+    background: #19456b !important;
+}
+.active a {
+    color: #fff;
 }
 .boil {
     background: darkcyan;
@@ -236,7 +239,7 @@ h2 {
     height: 20px;
     margin: auto 0;
     font-size: 15px;
-    color: blue;
+    color: red;
     transition: color 0.2s ease-out;
     padding: 0;
     border: 0;
@@ -418,6 +421,12 @@ input {
     position: absolute;
     top: 10px;
     right: 0;
+}
+.message {
+    display: none;
+}
+.message.show {
+    display: block;
 }
 .text {
     color: #fff;
